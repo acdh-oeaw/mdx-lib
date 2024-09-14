@@ -2,6 +2,7 @@ import "mdast-util-mdx-jsx";
 
 import type { Root } from "hast";
 import { toString } from "hast-util-to-string";
+import type { Plugin } from "unified";
 import { SKIP, visit } from "unist-util-visit";
 
 export interface WithIframeTitlesOptions {
@@ -9,10 +10,12 @@ export interface WithIframeTitlesOptions {
 	components?: Array<string>;
 }
 
-export function withIframeTitles(options: WithIframeTitlesOptions = {}) {
+export const withIframeTitles: Plugin<[WithIframeTitlesOptions], Root> = function withIframeTitles(
+	options = {},
+) {
 	const { components = ["Embed", "Video"] } = options;
 
-	return function transformer(tree: Root) {
+	return function transformer(tree) {
 		visit(tree, "mdxJsxFlowElement", (node) => {
 			if (node.name == null) return undefined;
 
@@ -33,4 +36,4 @@ export function withIframeTitles(options: WithIframeTitlesOptions = {}) {
 			return SKIP;
 		});
 	};
-}
+};

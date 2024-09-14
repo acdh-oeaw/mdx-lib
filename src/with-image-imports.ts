@@ -4,6 +4,7 @@ import { assert } from "@acdh-oeaw/lib";
 import type { ImportDeclaration } from "estree";
 import type { Root } from "hast";
 import type { MdxJsxAttribute, MdxJsxTextElementHast } from "mdast-util-mdx-jsx";
+import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
 export interface WithImageImportsOptions {
@@ -13,10 +14,12 @@ export interface WithImageImportsOptions {
 	publicPath?: `/${string}/`;
 }
 
-export function withImageImports(options: WithImageImportsOptions = {}) {
+export const withImageImports: Plugin<[WithImageImportsOptions], Root> = function withImageImports(
+	options = {},
+) {
 	const { components = ["Figure"], publicPath = "/public/" } = options;
 
-	return function transformer(tree: Root) {
+	return function transformer(tree) {
 		function getImagePath(src: unknown): string | null {
 			if (typeof src !== "string") return null;
 			if (src.startsWith("/")) return join(publicPath, src);
@@ -128,4 +131,4 @@ export function withImageImports(options: WithImageImportsOptions = {}) {
 			});
 		}
 	};
-}
+};

@@ -1,6 +1,7 @@
 import "mdast-util-mdx-jsx";
 
 import type { FootnoteDefinition, FootnoteReference, Root } from "mdast";
+import type { Plugin } from "unified";
 import { SKIP, visit } from "unist-util-visit";
 
 export interface WithFootnotesOptions {
@@ -8,10 +9,12 @@ export interface WithFootnotesOptions {
 	component?: string;
 }
 
-export function withFootnotes(options: WithFootnotesOptions = {}) {
+export const withFootnotes: Plugin<[WithFootnotesOptions], Root> = function withFootnotes(
+	options = {},
+) {
 	const { component = "Footnote" } = options;
 
-	return function transformer(tree: Root) {
+	return function transformer(tree) {
 		let count = 1;
 
 		visit(tree, "mdxJsxTextElement", (node, index, parent) => {
@@ -51,4 +54,4 @@ export function withFootnotes(options: WithFootnotesOptions = {}) {
 			return SKIP;
 		});
 	};
-}
+};
