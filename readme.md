@@ -226,13 +226,14 @@ import {
 	withTableOfContents,
 } from "@acdh-ch/mdx-lib";
 import withHeadingIds from "rehype-slug";
+import withGfm from "remark-gfm";
 import withTypographicQuotes from "remark-smartypants";
 
 import { useMDXComponents } from "../../mdx-components";
 
 const createProcessor = createMdxProcessors((locale) => {
 	return {
-		remarkPlugins: [[withTypographicQuotes, typographyConfig[locale]], withFootnotes],
+		remarkPlugins: [withGfm, [withTypographicQuotes, typographyConfig[locale]], withFootnotes],
 		remarkRehypeOptions: {
 			footnoteBackLabel(referenceIndex, rereferenceIndex) {
 				return t("footnoteBackLabel", {
