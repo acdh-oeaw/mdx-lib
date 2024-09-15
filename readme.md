@@ -199,6 +199,23 @@ note that paths starting with "/" will be expanded to absolute paths using the `
 option (defaults to "/public/"). for relative paths starting with "./" or "../", you need to provide
 a `baseUrl` to the mdx compiler.
 
+don't forget to map `img` elements to a custom component which can handle objects as `src` prop,
+e.g.:
+
+```ts
+// ./mdx-components.ts
+
+import Image from "next/image";
+
+const components = {
+	img: Image,
+};
+
+export function useMDXComponents() {
+	return components;
+}
+```
+
 ### `with-table-of-contents`
 
 `rehype` plugin which generates a table of contents, and provides it via
