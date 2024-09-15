@@ -199,6 +199,9 @@ note that paths starting with "/" will be expanded to absolute paths using the `
 option (defaults to "/public/"). for relative paths starting with "./" or "../", you need to provide
 a `baseUrl` to the mdx compiler.
 
+also note that you need a bundler to handle the image imports, so this requires
+`outputFormat: "program"`.
+
 don't forget to map `img` elements to a custom component which can handle objects as `src` prop,
 e.g.:
 
@@ -239,7 +242,7 @@ import {
 	withCustomHeadingIds,
 	withFootnotes,
 	withIframeTitles,
-	withImageImports,
+	// withImageImports,
 	withTableOfContents,
 } from "@acdh-ch/mdx-lib";
 import withHeadingIds from "rehype-slug";
@@ -263,7 +266,7 @@ const createProcessor = createMdxProcessors((locale) => {
 			withHeadingIds,
 			withCustomHeadingIds,
 			[withIframeTitles, { components: ["Embed", "Iframe", "Video"] }],
-			[withImageImports, { components: ["Figure"] }],
+			// [withImageImports, { components: ["Figure"] }],
 			withTableOfContents,
 		],
 	};

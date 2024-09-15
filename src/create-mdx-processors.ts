@@ -20,10 +20,10 @@ export function createMdxProcessors<TLocale extends Locale>(
 
 		const config = await createMdxConfig(locale);
 		const processor = createFormatAwareProcessors({
-			...config,
 			format: "mdx",
 			outputFormat: "function-body",
 			providerImportSource: "#",
+			...config,
 		});
 
 		cache.set(locale, processor);
