@@ -7,17 +7,19 @@ import type { MdxJsxAttribute, MdxJsxTextElementHast } from "mdast-util-mdx-jsx"
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
+const defaultPublicPath = join(process.cwd(), "public");
+
 export interface WithImageImportsOptions {
 	/** @default ["Figure"] */
 	components?: Array<string>;
-	/** @default "/public/" */
-	publicPath?: `/${string}/`;
+	/** @default "<rootDir>/public/" */
+	publicPath?: string;
 }
 
 export const withImageImports: Plugin<[WithImageImportsOptions], Root> = function withImageImports(
 	options = {},
 ) {
-	const { components = ["Figure"], publicPath = "/public/" } = options;
+	const { components = ["Figure"], publicPath = defaultPublicPath } = options;
 
 	return function transformer(tree) {
 		function getImagePath(src: unknown): string | null {
