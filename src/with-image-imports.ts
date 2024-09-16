@@ -1,4 +1,4 @@
-import { join } from "node:path/posix";
+import { join } from "node:path";
 
 import { assert } from "@acdh-oeaw/lib";
 import type { ImportDeclaration } from "estree";
@@ -24,9 +24,15 @@ export const withImageImports: Plugin<[WithImageImportsOptions], Root> = functio
 	return function transformer(tree) {
 		function getImagePath(src: unknown): string | null {
 			if (typeof src !== "string") return null;
-			if (src.startsWith("/")) return join(publicPath, src);
-			if (src.startsWith("./")) return src;
-			if (src.startsWith("../")) return src;
+
+			if (src.startsWith("/")) {
+				return join(publicPath, src);
+			}
+
+			if (src.startsWith("./") || src.startsWith("../")) {
+				return src;
+			}
+
 			return null;
 		}
 

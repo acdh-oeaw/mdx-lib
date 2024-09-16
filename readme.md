@@ -243,6 +243,7 @@ import {
 	withFootnotes,
 	withIframeTitles,
 	// withImageImports,
+	withImageSizes,
 	withTableOfContents,
 } from "@acdh-ch/mdx-lib";
 import withHeadingIds from "rehype-slug";
@@ -267,6 +268,7 @@ const createProcessor = createMdxProcessors((locale) => {
 			withCustomHeadingIds,
 			[withIframeTitles, { components: ["Embed", "Iframe", "Video"] }],
 			// [withImageImports, { components: ["Figure"] }],
+			[withImageSizes, { components: ["Figure"] }],
 			withTableOfContents,
 		],
 	};
@@ -274,7 +276,7 @@ const createProcessor = createMdxProcessors((locale) => {
 
 export async function compileMdx(content: string, baseUrl: URL, locale: "de" | "en") {
 	const processor = await createProcessor(locale);
-	const vfile = await processor.process(content);
+	const vfile = await processor.process({ path: baseUrl, value: content });
 	return run(vfile, { ...runtime, baseUrl, useMDXComponents });
 }
 ```

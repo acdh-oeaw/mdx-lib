@@ -4,6 +4,7 @@ export { withCustomHeadingIds, type WithCustomHeadingIdsOptions } from "./with-c
 export { withFootnotes, type WithFootnotesOptions } from "./with-footnotes";
 export { withIframeTitles, type WithIframeTitlesOptions } from "./with-iframe-titles";
 export { withImageImports, type WithImageImportsOptions } from "./with-image-imports";
+export { withImageSizes, type WithImageSizesOptions } from "./with-image-sizes";
 export {
 	type TableOfContents,
 	withTableOfContents,
