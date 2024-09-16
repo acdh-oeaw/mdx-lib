@@ -1,5 +1,15 @@
 # @acdh-oeaw/mdx-lib
 
+## 0.1.0
+
+### Minor Changes
+
+- [`be3499a`](https://github.com/acdh-oeaw/mdx-lib/commit/be3499ac814b0a7b50615acd0ede76f7fcf1f3ec)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add image-size plugin
+
+- [`5f525fc`](https://github.com/acdh-oeaw/mdx-lib/commit/5f525fc075ad45bf51745cc98ffefb536a979962)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add create-compiler util
+
 ## 0.0.2
 
 ### Patch Changes
