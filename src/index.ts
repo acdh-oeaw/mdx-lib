@@ -1,5 +1,6 @@
 export { type MdxConfig, typographyConfig } from "./config";
-export { createMdxProcessors } from "./create-mdx-processors";
+export { createMdxCompiler } from "./create-mdx-compiler";
+export { createMdxProcessors, type MdxProcessorOptions } from "./create-mdx-processors";
 export { withCustomHeadingIds, type WithCustomHeadingIdsOptions } from "./with-custom-heading-ids";
 export { withFootnotes, type WithFootnotesOptions } from "./with-footnotes";
 export { withIframeTitles, type WithIframeTitlesOptions } from "./with-iframe-titles";

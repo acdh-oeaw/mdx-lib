@@ -8,12 +8,12 @@ import type { Locale } from "./config";
 
 type MaybePromise<T> = T | Promise<T>;
 
+export type MdxProcessorOptions = Omit<CompileOptions, "providerImportSource">;
+
 const cache = new Map<Locale, FormatAwareProcessors>();
 
 export function createMdxProcessors<TLocale extends Locale>(
-	createMdxConfig: (
-		locale: TLocale,
-	) => MaybePromise<Omit<CompileOptions, "format" | "outputFormat" | "providerImportSource">>,
+	createMdxConfig: (locale: TLocale) => MaybePromise<MdxProcessorOptions>,
 ) {
 	return async function createMdxProcessor(locale: TLocale) {
 		if (cache.has(locale)) return cache.get(locale)!;
@@ -22,8 +22,8 @@ export function createMdxProcessors<TLocale extends Locale>(
 		const processor = createFormatAwareProcessors({
 			format: "mdx",
 			outputFormat: "function-body",
-			providerImportSource: "#",
 			...config,
+			providerImportSource: "#",
 		});
 
 		cache.set(locale, processor);

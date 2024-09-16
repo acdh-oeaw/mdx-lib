@@ -237,6 +237,7 @@ const { default: Content, tableOfContents } = await run(vfile, { ...runtime });
 // ./lib/mdx/compile-mdx.ts
 
 import {
+	createMdxCompiler,
 	createMdxProcessors,
 	typographyConfig,
 	withCustomHeadingIds,
@@ -249,6 +250,7 @@ import {
 import withHeadingIds from "rehype-slug";
 import withGfm from "remark-gfm";
 import withTypographicQuotes from "remark-smartypants";
+import * as runtime from "react/jsx-runtime";
 
 import { useMDXComponents } from "../../mdx-components";
 
@@ -274,9 +276,5 @@ const createProcessor = createMdxProcessors((locale) => {
 	};
 });
 
-export async function compileMdx(content: string, baseUrl: URL, locale: "de" | "en") {
-	const processor = await createProcessor(locale);
-	const vfile = await processor.process({ path: baseUrl, value: content });
-	return run(vfile, { ...runtime, baseUrl, useMDXComponents });
-}
+export const compileMdx = createMdxCompiler(createProcessor, runtime, useMDXComponents);
 ```
