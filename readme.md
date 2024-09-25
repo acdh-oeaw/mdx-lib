@@ -266,8 +266,8 @@ const createProcessor = createMdxProcessors((locale) => {
 			footnoteLabel: t("footnoteLabel"),
 		},
 		rehypePlugins: [
-			withHeadingIds,
 			withCustomHeadingIds,
+			withHeadingIds,
 			[withIframeTitles, { components: ["Embed", "Iframe", "Video"] }],
 			// [withImageImports, { components: ["Figure"] }],
 			[withImageSizes, { components: ["Figure"] }],

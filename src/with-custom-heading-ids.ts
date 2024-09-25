@@ -16,6 +16,27 @@ export const withCustomHeadingIds: Plugin<[WithCustomHeadingIdsOptions], Root> =
 		const { component = "HeadingId" } = options;
 
 		return function transformer(tree) {
+			visit(tree, (node) => {
+				if (!isHeadingElement(node)) return;
+				if (node.properties["id"] != null) return;
+
+				const lastChild = node.children.at(-1);
+				if (lastChild == null || lastChild.type !== "text") return;
+
+				const heading = lastChild.value;
+				/**
+				 * Supported format: `[#about]`.
+				 */
+				const match = heading.match(/\s*\[#([^]+?)]\s*$/);
+				if (match == null) return;
+
+				node.properties["id"] = match[1];
+
+				lastChild.value = heading.slice(0, match.index);
+
+				return SKIP;
+			});
+
 			visit(tree, "mdxJsxTextElement", (node, index, parent) => {
 				if (parent == null) return undefined;
 				if (index == null) return undefined;
