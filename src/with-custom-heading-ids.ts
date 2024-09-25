@@ -27,7 +27,7 @@ export const withCustomHeadingIds: Plugin<[WithCustomHeadingIdsOptions], Root> =
 				/**
 				 * Supported format: `[#about]`.
 				 */
-				const match = heading.match(/\s*\[#([^]+?)]\s*$/);
+				const match = /\s*\[#([\s\S]+?)\]\s*$/.exec(heading);
 				if (match == null) return;
 
 				node.properties["id"] = match[1];
