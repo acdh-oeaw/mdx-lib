@@ -1,5 +1,12 @@
 # @acdh-oeaw/mdx-lib
 
+## 0.1.1
+
+### Patch Changes
+
+- [`2354c72`](https://github.com/acdh-oeaw/mdx-lib/commit/2354c720af687f7f2cc6c3a8684a6ce31c152d7e)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - support custom heading ids via [#id]
+
 ## 0.1.0
 
 ### Minor Changes
