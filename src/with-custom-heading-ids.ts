@@ -6,6 +6,8 @@ import { heading as isHeadingElement } from "hast-util-heading";
 import type { Plugin } from "unified";
 import { SKIP, visit } from "unist-util-visit";
 
+const regex = /\s*\[#([\s\S]+?)\]\s*$/;
+
 export interface WithCustomHeadingIdsOptions {
 	/** @default "HeadingId" */
 	component?: string;
@@ -27,7 +29,7 @@ export const withCustomHeadingIds: Plugin<[WithCustomHeadingIdsOptions], Root> =
 				/**
 				 * Supported format: `[#about]`.
 				 */
-				const match = /\s*\[#([\s\S]+?)\]\s*$/.exec(heading);
+				const match = regex.exec(heading);
 				if (match == null) return;
 
 				node.properties["id"] = match[1];
