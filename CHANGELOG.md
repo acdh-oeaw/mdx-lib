@@ -1,5 +1,12 @@
 # @acdh-oeaw/mdx-lib
 
+## 0.1.2
+
+### Patch Changes
+
+- [`e0f7ca6`](https://github.com/acdh-oeaw/mdx-lib/commit/e0f7ca669df72a0aaa9cc1c35a3d332bf7a9baf1)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - update type export
+
 ## 0.1.1
 
 ### Patch Changes
