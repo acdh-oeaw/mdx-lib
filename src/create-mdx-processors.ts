@@ -1,5 +1,5 @@
+import type { CompileOptions } from "@mdx-js/mdx";
 import {
-	type CompileOptions,
 	createFormatAwareProcessors,
 	type FormatAwareProcessors,
 } from "@mdx-js/mdx/internal-create-format-aware-processors";
