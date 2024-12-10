@@ -11,4 +11,8 @@ export {
 	withTableOfContents,
 	type WithTableOfContentsOptions,
 } from "./with-table-of-contents";
+export {
+	withUnwrappedMdxFlowContent,
+	type WithUnwrappedMdxFlowContentOptions,
+} from "./with-unwrapped-mdx-flow-content";
 export { run } from "@mdx-js/mdx";
