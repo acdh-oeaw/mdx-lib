@@ -1,5 +1,13 @@
 # @acdh-oeaw/mdx-lib
 
+## 0.1.3
+
+### Patch Changes
+
+- [`7c511b6`](https://github.com/acdh-oeaw/mdx-lib/commit/7c511b630c18b10131115a63227d1333f2919a6b)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add plugin to unwrap mdx flow element
+  content
+
 ## 0.1.2
 
 ### Patch Changes
