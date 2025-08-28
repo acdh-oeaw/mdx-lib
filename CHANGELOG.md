@@ -1,5 +1,14 @@
 # @acdh-oeaw/mdx-lib
 
+## 0.1.4
+
+### Patch Changes
+
+- [#8](https://github.com/acdh-oeaw/mdx-lib/pull/8)
+  [`4c2a107`](https://github.com/acdh-oeaw/mdx-lib/commit/4c2a107c25ffc9ac174b2b394e08a7d575717080)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - fix height attribute in image-sizes
+  plugin
+
 ## 0.1.3
 
 ### Patch Changes
