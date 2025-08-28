@@ -93,8 +93,8 @@ export const withImageSizes: Plugin<[WithImageSizesOptions], Root> = function wi
 										type: "ExpressionStatement",
 										expression: {
 											type: "Literal",
-											value: width,
-											raw: String(width),
+											value: height,
+											raw: String(height),
 										},
 									},
 								],
