@@ -2,6 +2,9 @@
 	"name": "@acdh-oeaw/mdx-lib",
 	"version": "0.1.4",
 	"license": "MIT",
+	"repository": {
+		"url": "https://github.com/acdh-oeaw/mdx-lib"
+	},
 	"type": "module",
 	"exports": {
 		".": "./dist/index.js"
