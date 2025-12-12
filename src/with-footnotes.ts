@@ -18,10 +18,16 @@ export const withFootnotes: Plugin<[WithFootnotesOptions], Root> = function with
 		let count = 1;
 
 		visit(tree, "mdxJsxTextElement", (node, index, parent) => {
-			if (parent == null) return undefined;
-			if (index == null) return undefined;
+			if (parent == null) {
+				return undefined;
+			}
+			if (index == null) {
+				return undefined;
+			}
 
-			if (node.name !== component) return undefined;
+			if (node.name !== component) {
+				return undefined;
+			}
 
 			/** Add prefix to avoid collisions with gfm footnotes in source mdx. */
 			const id = `fn-${String(count)}`;

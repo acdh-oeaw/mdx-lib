@@ -25,11 +25,11 @@ export const withGfm: Plugin<[Options], Root> = function withGfm(options = {}) {
 	const data = self.data();
 
 	// @ts-expect-error: It's fine.
-	data.micromarkExtensions ||= [];
+	data.micromarkExtensions ??= [];
 	// @ts-expect-error: It's fine.
-	data.fromMarkdownExtensions ||= [];
+	data.fromMarkdownExtensions ??= [];
 	// @ts-expect-error: It's fine.
-	data.toMarkdownExtensions ||= [];
+	data.toMarkdownExtensions ??= [];
 
 	// @ts-expect-error: It's fine.
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access

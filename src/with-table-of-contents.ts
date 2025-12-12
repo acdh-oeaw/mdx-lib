@@ -93,6 +93,7 @@ export const withTableOfContents: Plugin<[WithTableOfContentsOptions], Root> =
 								type: "ExportNamedDeclaration",
 								source: null,
 								specifiers: [],
+								attributes: [],
 								declaration: {
 									type: "VariableDeclaration",
 									kind: "const",
@@ -111,7 +112,9 @@ export const withTableOfContents: Plugin<[WithTableOfContentsOptions], Root> =
 			});
 
 			visit(tree, "mdxJsxFlowElement", (node) => {
-				if (node.name !== component) return;
+				if (node.name !== component) {
+					return;
+				}
 
 				node.attributes.push({
 					type: "mdxJsxAttribute",

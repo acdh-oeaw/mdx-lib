@@ -22,7 +22,9 @@ export const withImageSizes: Plugin<[WithImageSizesOptions], Root> = function wi
 
 	return function transformer(tree, vfile) {
 		function getImagePath(src: unknown): string | null {
-			if (typeof src !== "string") return null;
+			if (typeof src !== "string") {
+				return null;
+			}
 
 			if (src.startsWith("/")) {
 				return join(publicPath, src);
@@ -39,17 +41,27 @@ export const withImageSizes: Plugin<[WithImageSizesOptions], Root> = function wi
 		}
 
 		visit(tree, (node, index, parent) => {
-			if (parent == null) return;
-			if (index == null) return;
+			if (parent == null) {
+				return;
+			}
+			if (index == null) {
+				return;
+			}
 
 			if (node.type === "element" && node.tagName === "img") {
-				if (node.properties["height"] != null || node.properties["width"] != null) return;
+				if (node.properties["height"] != null || node.properties["width"] != null) {
+					return;
+				}
 
 				const path = getImagePath(node.properties["src"]);
-				if (path == null) return;
+				if (path == null) {
+					return;
+				}
 
 				const { height, width } = imageSize(path);
-				if (height == null || width == null) return;
+				if (height == null || width == null) {
+					return;
+				}
 
 				node.properties["height"] = height;
 				node.properties["width"] = width;
@@ -74,10 +86,14 @@ export const withImageSizes: Plugin<[WithImageSizesOptions], Root> = function wi
 					return attribute.type === "mdxJsxAttribute" && attribute.name === "src";
 				});
 				const path = getImagePath(attribute?.value);
-				if (path == null) return;
+				if (path == null) {
+					return;
+				}
 
 				const { height, width } = imageSize(path);
-				if (height == null || width == null) return;
+				if (height == null || width == null) {
+					return;
+				}
 
 				node.attributes.push({
 					type: "mdxJsxAttribute",
