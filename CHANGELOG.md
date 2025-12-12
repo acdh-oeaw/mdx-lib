@@ -1,5 +1,14 @@
 # @acdh-oeaw/mdx-lib
 
+## 0.2.0
+
+### Minor Changes
+
+- [#14](https://github.com/acdh-oeaw/mdx-lib/pull/14)
+  [`431364b`](https://github.com/acdh-oeaw/mdx-lib/commit/431364b84be86159374e57720a14b31229649ddf)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add gfm plugin without autolink
+  literals
+
 ## 0.1.4
 
 ### Patch Changes
