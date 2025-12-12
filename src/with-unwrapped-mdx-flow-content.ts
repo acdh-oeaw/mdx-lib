@@ -16,10 +16,14 @@ export const withUnwrappedMdxFlowContent: Plugin<[WithUnwrappedMdxFlowContentOpt
 
 		return function transformer(tree) {
 			visit(tree, "mdxJsxFlowElement", (node) => {
-				if (node.name == null || !components.includes(node.name)) return;
+				if (node.name == null || !components.includes(node.name)) {
+					return;
+				}
 
 				node.children = node.children.map((child) => {
-					if (child.type !== "element" || child.tagName !== "p") return child;
+					if (child.type !== "element" || child.tagName !== "p") {
+						return child;
+					}
 
 					return {
 						type: "mdxJsxTextElement",

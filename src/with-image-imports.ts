@@ -23,7 +23,9 @@ export const withImageImports: Plugin<[WithImageImportsOptions], Root> = functio
 
 	return function transformer(tree) {
 		function getImagePath(src: unknown): string | null {
-			if (typeof src !== "string") return null;
+			if (typeof src !== "string") {
+				return null;
+			}
 
 			if (src.startsWith("/")) {
 				return join(publicPath, src);
@@ -47,12 +49,18 @@ export const withImageImports: Plugin<[WithImageImportsOptions], Root> = functio
 		}
 
 		visit(tree, (node, index, parent) => {
-			if (parent == null) return;
-			if (index == null) return;
+			if (parent == null) {
+				return;
+			}
+			if (index == null) {
+				return;
+			}
 
 			if (node.type === "element" && node.tagName === "img") {
 				const path = getImagePath(node.properties["src"]);
-				if (path == null) return;
+				if (path == null) {
+					return;
+				}
 
 				const name = getName(path);
 
@@ -101,7 +109,9 @@ export const withImageImports: Plugin<[WithImageImportsOptions], Root> = functio
 					return attribute.type === "mdxJsxAttribute" && attribute.name === "src";
 				});
 				const path = getImagePath(attribute?.value);
-				if (path == null) return;
+				if (path == null) {
+					return;
+				}
 
 				const name = getName(path);
 
@@ -129,6 +139,7 @@ export const withImageImports: Plugin<[WithImageImportsOptions], Root> = functio
 					type: "ImportDeclaration",
 					specifiers: [{ type: "ImportDefaultSpecifier", local: { type: "Identifier", name } }],
 					source: { type: "Literal", value: path },
+					attributes: [],
 				});
 			});
 

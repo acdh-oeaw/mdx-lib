@@ -17,15 +17,21 @@ export const withIframeTitles: Plugin<[WithIframeTitlesOptions], Root> = functio
 
 	return function transformer(tree) {
 		visit(tree, "mdxJsxFlowElement", (node) => {
-			if (node.name == null) return undefined;
+			if (node.name == null) {
+				return undefined;
+			}
 
-			if (!components.includes(node.name)) return undefined;
+			if (!components.includes(node.name)) {
+				return undefined;
+			}
 
 			const title = node.attributes.find(
 				(attribute) => attribute.type === "mdxJsxAttribute" && attribute.name === "title",
 			);
 
-			if (title != null) return undefined;
+			if (title != null) {
+				return undefined;
+			}
 
 			node.attributes.push({
 				type: "mdxJsxAttribute",

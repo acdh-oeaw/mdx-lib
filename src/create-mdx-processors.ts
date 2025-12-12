@@ -16,7 +16,9 @@ export function createMdxProcessors<TLocale extends Locale>(
 	createMdxConfig: (locale: TLocale) => MaybePromise<MdxProcessorOptions>,
 ) {
 	return async function createMdxProcessor(locale: TLocale) {
-		if (cache.has(locale)) return cache.get(locale)!;
+		if (cache.has(locale)) {
+			return cache.get(locale)!;
+		}
 
 		const config = await createMdxConfig(locale);
 		const processor = createFormatAwareProcessors({

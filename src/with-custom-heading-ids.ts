@@ -19,18 +19,26 @@ export const withCustomHeadingIds: Plugin<[WithCustomHeadingIdsOptions], Root> =
 
 		return function transformer(tree) {
 			visit(tree, (node) => {
-				if (!isHeadingElement(node)) return;
-				if (node.properties["id"] != null) return;
+				if (!isHeadingElement(node)) {
+					return;
+				}
+				if (node.properties["id"] != null) {
+					return;
+				}
 
 				const lastChild = node.children.at(-1);
-				if (lastChild == null || lastChild.type !== "text") return;
+				if (lastChild?.type !== "text") {
+					return;
+				}
 
 				const heading = lastChild.value;
 				/**
 				 * Supported format: `[#about]`.
 				 */
 				const match = regex.exec(heading);
-				if (match == null) return;
+				if (match == null) {
+					return;
+				}
 
 				node.properties["id"] = match[1];
 
@@ -40,10 +48,16 @@ export const withCustomHeadingIds: Plugin<[WithCustomHeadingIdsOptions], Root> =
 			});
 
 			visit(tree, "mdxJsxTextElement", (node, index, parent) => {
-				if (parent == null) return undefined;
-				if (index == null) return undefined;
+				if (parent == null) {
+					return undefined;
+				}
+				if (index == null) {
+					return undefined;
+				}
 
-				if (node.name !== component) return undefined;
+				if (node.name !== component) {
+					return undefined;
+				}
 
 				assert(
 					isHeadingElement(parent),
@@ -56,9 +70,8 @@ export const withCustomHeadingIds: Plugin<[WithCustomHeadingIdsOptions], Root> =
 
 				assert(id, `\`<${component}>\` has no \`id\` prop.`);
 
-				if (parent.properties["id"] == null) {
-					parent.properties["id"] = String(id);
-				}
+				// eslint-disable-next-line @typescript-eslint/no-base-to-string
+				parent.properties["id"] ??= String(id);
 
 				parent.children.splice(index, 1);
 
